@@ -18,7 +18,7 @@ function Country() {
         setCountries(data);
         setLoading(false);
       } catch (error) {
-        // console.log("fetch error", error);
+        console.log("fetch error", error);
         setLoading(false);
       }
     };
