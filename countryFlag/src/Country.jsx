@@ -13,12 +13,12 @@ function Country() {
           throw new Error("failed to fetch countries");
         }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
 
         setCountries(data);
         setLoading(false);
       } catch (error) {
-        console.log("fetch error", error);
+        // console.log("fetch error", error);
         setLoading(false);
       }
     };
