@@ -24,7 +24,7 @@ function Form() {
         <div className='card'>
           <form onSubmit={handelFormSubmit}>
             <div className='col-sm-6'>
-              {submitted || (firstName !== '' && lastName !== '') ? (
+              {submitted && (firstName !== '' && lastName !== '') ? (
                 <h3> Full Name: {firstName} {lastName}</h3>
               ) : (
                 <h3>Full Name:</h3>
