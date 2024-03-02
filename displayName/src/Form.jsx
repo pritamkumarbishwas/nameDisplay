@@ -32,9 +32,9 @@ function Form() {
           <form onSubmit={handelFormSubmit}>
             <div className='col-sm-6'>
               {submitted && (firstName !== '' && lastName !== '') ? (
-                <h3> Full Name: {firstName} {lastName}</h3>
+                <h3> full name: {firstName} {lastName}</h3>
               ) : (
-                <h3>Full Name:</h3>
+                <h3>full name:</h3>
               )}
 
 
