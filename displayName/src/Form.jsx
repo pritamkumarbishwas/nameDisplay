@@ -7,11 +7,13 @@ function Form() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value.trim());
+    const value = event.target.value.replace(/[^a-zA-Z ]/g, '');
+    setFirstName(value.trim());
   };
 
   const handleLastNameChange = (event) => {
-    setLastName(event.target.value.trim());
+    const value = event.target.value.replace(/[^a-zA-Z ]/g, '');
+    setLastName(value.trim());
   };
 
   const handleFormSubmit = (event) => {
