@@ -18,6 +18,13 @@ function Form() {
     setSubmitted(true);
   }
 
+  useEffect(() => {
+    if (firstName !== '' && lastName !== '') {
+      setSubmitted(true);
+    }
+  }, [firstName, lastName]);
+
+
   return (
     <>
       <div className='container'>
