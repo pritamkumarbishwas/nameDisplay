@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Form.css';
 
 function Form() {
@@ -14,29 +14,31 @@ function Form() {
     setLastName(event.target.value.trim());
   };
 
-
   const handleFormSubmit = (event) => {
     event.preventDefault();
     setSubmitted(true);
   };
-
 
   return (
     <div className='container'>
       <div className='card'>
         <form onSubmit={handleFormSubmit}>
           <div className='col-sm-6'>
-            <h3>Full Name: {submitted ? `${firstName} ${lastName}` : ''}</h3>
+            {submitted && firstName !== '' && lastName !== '' ? (
+              <h3>Full Name: {firstName} {lastName}</h3>
+            ) : (
+              <h3>Full Name Display</h3>
+            )}
           </div>
 
           <div className='col-sm-6'>
             <label htmlFor="firstName">First Name</label>
-            <input type="text" id="firstName" value={firstName} onChange={handleFirstNameChange} required />
+            <input type="text" id="firstName" value={firstName} onChange={handleFirstNameChange} />
           </div>
 
           <div className='col-sm-6'>
             <label htmlFor='lastName'>Last Name</label>
-            <input type='text' id='lastName' value={lastName} onChange={handleLastNameChange} required />
+            <input type='text' id='lastName' value={lastName} onChange={handleLastNameChange} />
           </div>
 
           <div className='col-sm-6'>
