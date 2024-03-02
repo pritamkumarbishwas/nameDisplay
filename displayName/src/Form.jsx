@@ -7,23 +7,19 @@ function Form() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
+    setFirstName(event.target.value.trim());
   };
 
   const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
+    setLastName(event.target.value.trim());
   };
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     setSubmitted(true);
   };
 
-  useEffect(() => {
-    if (firstName !== '' && lastName !== '') {
-      setSubmitted(true);
-    }
-  }, [firstName, lastName]);
 
   return (
     <div className='container'>
