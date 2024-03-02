@@ -30,7 +30,6 @@ function Form() {
       <div className='card'>
         <form onSubmit={handleFormSubmit}>
           <div className='col-sm-6'>
-            {/* Simplified conditional rendering for the full name */}
             <h3>Full Name: {submitted ? `${firstName} ${lastName}` : ''}</h3>
           </div>
 
