@@ -16,38 +16,48 @@ function Calculator() {
 
   const calculateResult = () => {
     try {
-      const result = eval(input);
+      const result = evaluateExpression(input);
       setOutput(result.toString());
     } catch (error) {
       setOutput('Error');
     }
   };
 
+  const evaluateExpression = (expression) => {
+    const sanitizedExpression = expression.replace(/\s/g, ''); // Remove whitespaces
+    return eval(sanitizedExpression); // Use eval to calculate the expression
+  };
+
   return (
     <div className="container">
       <fieldset id="container">
-        <input id="display"  type="text" value={input} readOnly />
-        <p>{output}</p><br/>
+        <input id="display" type="text" value={input} readOnly />
+        <p>{output}</p>
 
-        <input className="button digits" type="button" value="7" onClick={() => handleClick('7')} />
-        <input className="button digits" type="button" value="8" onClick={() => handleClick('8')} />
-        <input className="button digits" type="button" value="9" onClick={() => handleClick('9')} />
-        <input className="button mathButtons" type="button" value="+" onClick={() => handleClick('+')} />
-        <br />
-        <input className="button digits" type="button" value="4" onClick={() => handleClick('4')} />
-        <input className="button digits" type="button" value="5" onClick={() => handleClick('5')} />
-        <input className="button digits" type="button" value="6" onClick={() => handleClick('6')} />
-        <input className="button mathButtons" type="button" value="-" onClick={() => handleClick('-')} />
-        <br />
-        <input className="button digits" type="button" value="1" onClick={() => handleClick('1')} />
-        <input className="button digits" type="button" value="2" onClick={() => handleClick('2')} />
-        <input className="button digits" type="button" value="3" onClick={() => handleClick('3')} />
-        <input className="button mathButtons" type="button" value="*" onClick={() => handleClick('*')} />
-        <br />
-        <input id="clearButton" className="button" type="button" value="C" onClick={handleClear} />
-        <input className="button digits" type="button" value="0" onClick={() => handleClick('0')} />
-        <input className="button mathButtons" type="button" value="=" onClick={calculateResult} />
-        <input className="button mathButtons" type="button" value="/" onClick={() => handleClick('/')} />
+        <div className="button-row">
+          <button className="button digits" onClick={() => handleClick('7')}>7</button>
+          <button className="button digits" onClick={() => handleClick('8')}>8</button>
+          <button className="button digits" onClick={() => handleClick('9')}>9</button>
+          <button className="button mathButtons" onClick={() => handleClick(' + ')}>+</button>
+        </div>
+        <div className="button-row">
+          <button className="button digits" onClick={() => handleClick('4')}>4</button>
+          <button className="button digits" onClick={() => handleClick('5')}>5</button>
+          <button className="button digits" onClick={() => handleClick('6')}>6</button>
+          <button className="button mathButtons" onClick={() => handleClick(' - ')}>-</button>
+        </div>
+        <div className="button-row">
+          <button className="button digits" onClick={() => handleClick('1')}>1</button>
+          <button className="button digits" onClick={() => handleClick('2')}>2</button>
+          <button className="button digits" onClick={() => handleClick('3')}>3</button>
+          <button className="button mathButtons" onClick={() => handleClick(' * ')}>*</button>
+        </div>
+        <div className="button-row">
+          <button id="clearButton" className="button" onClick={handleClear}>C</button>
+          <button className="button digits" onClick={() => handleClick('0')}>0</button>
+          <button className="button mathButtons" onClick={calculateResult}>=</button>
+          <button className="button mathButtons" onClick={() => handleClick(' / ')}>/</button>
+        </div>
       </fieldset>
     </div>
   );
