@@ -2,29 +2,32 @@ import React, { useState } from 'react';
 import './Calculator.css';
 
 function Calculator() {
-  const [display, setDisplay] = useState('');
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState('');
 
   const handleClick = (value) => {
-    setDisplay((prevDisplay) => prevDisplay + value);
+    setInput((prevInput) => prevInput + value);
   };
 
   const handleClear = () => {
-    setDisplay('');
+    setInput('');
+    setOutput('');
   };
 
   const calculateResult = () => {
     try {
-      const result = eval(display);
-      setDisplay(result.toString());
+      const result = eval(input);
+      setOutput(result.toString());
     } catch (error) {
-      setDisplay('Error');
+      setOutput('Error');
     }
   };
 
   return (
     <div className="container">
       <fieldset id="container">
-        <input id="display" type="text" value={display} readOnly />
+        <input id="display"  type="text" value={input} readOnly />
+        <p>{output}</p><br/>
 
         <input className="button digits" type="button" value="7" onClick={() => handleClick('7')} />
         <input className="button digits" type="button" value="8" onClick={() => handleClick('8')} />
