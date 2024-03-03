@@ -1,61 +1,50 @@
-import { useState } from 'react'
-import './Calculator.css'
+import React, { useState } from 'react';
+import './Calculator.css';
 
 function Calculator() {
+  const [display, setDisplay] = useState('');
 
-  const [displayValue, setDisplayValue] = useState('');
-
-  const handleButtonClick = (value) => {
-    setDisplayValue(prevValue => prevValue + value);
+  const handleClick = (value) => {
+    setDisplay((prevDisplay) => prevDisplay + value);
   };
 
-  const handleClearButtonClick = () => {
-    setDisplayValue('');
+  const handleClear = () => {
+    setDisplay('');
   };
 
-  const handleEqualButtonClick = () => {
+  const calculateResult = () => {
     try {
-      setDisplayValue(eval(displayValue).toString());
+      const result = eval(display);
+      setDisplay(result.toString());
     } catch (error) {
-      setDisplayValue('Error');
+      setDisplay('Error');
     }
   };
-
 
   return (
     <div className="container">
       <fieldset id="container">
-        <form name="calculator">
-          <input id="display" type="text" name="display" value={displayValue} readOnly />
+        <input id="display" type="text" value={display} readOnly />
 
-          <div className="row">
-            <button className="button digits" type="button" onClick={() => handleButtonClick('7')}>7</button>
-            <button className="button digits" type="button" onClick={() => handleButtonClick('8')}>8</button>
-            <button className="button digits" type="button" onClick={() => handleButtonClick('9')}>9</button>
-            <button className="button mathButtons" type="button" onClick={() => handleButtonClick(' + ')}>+</button>
-          </div>
-
-          <div className="row">
-            <button className="button digits" type="button" onClick={() => handleButtonClick('4')}>4</button>
-            <button className="button digits" type="button" onClick={() => handleButtonClick('5')}>5</button>
-            <button className="button digits" type="button" onClick={() => handleButtonClick('6')}>6</button>
-            <button className="button mathButtons" type="button" onClick={() => handleButtonClick(' - ')}>-</button>
-          </div>
-
-          <div className="row">
-            <button className="button digits" type="button" onClick={() => handleButtonClick('1')}>1</button>
-            <button className="button digits" type="button" onClick={() => handleButtonClick('2')}>2</button>
-            <button className="button digits" type="button" onClick={() => handleButtonClick('3')}>3</button>
-            <button className="button mathButtons" type="button" onClick={() => handleButtonClick(' * ')}>x</button>
-          </div>
-
-          <div className="row">
-            <button id="clearButton" className="button" type="button" onClick={handleClearButtonClick}>C</button>
-            <button className="button digits" type="button" onClick={() => handleButtonClick('0')}>0</button>
-            <button className="button mathButtons" type="button" onClick={handleEqualButtonClick}>=</button>
-            <button className="button mathButtons" type="button" onClick={() => handleButtonClick(' / ')}>/</button>
-          </div>
-        </form>
+        <input className="button digits" type="button" value="7" onClick={() => handleClick('7')} />
+        <input className="button digits" type="button" value="8" onClick={() => handleClick('8')} />
+        <input className="button digits" type="button" value="9" onClick={() => handleClick('9')} />
+        <input className="button mathButtons" type="button" value="+" onClick={() => handleClick('+')} />
+        <br />
+        <input className="button digits" type="button" value="4" onClick={() => handleClick('4')} />
+        <input className="button digits" type="button" value="5" onClick={() => handleClick('5')} />
+        <input className="button digits" type="button" value="6" onClick={() => handleClick('6')} />
+        <input className="button mathButtons" type="button" value="-" onClick={() => handleClick('-')} />
+        <br />
+        <input className="button digits" type="button" value="1" onClick={() => handleClick('1')} />
+        <input className="button digits" type="button" value="2" onClick={() => handleClick('2')} />
+        <input className="button digits" type="button" value="3" onClick={() => handleClick('3')} />
+        <input className="button mathButtons" type="button" value="*" onClick={() => handleClick('*')} />
+        <br />
+        <input id="clearButton" className="button" type="button" value="C" onClick={handleClear} />
+        <input className="button digits" type="button" value="0" onClick={() => handleClick('0')} />
+        <input className="button mathButtons" type="button" value="=" onClick={calculateResult} />
+        <input className="button mathButtons" type="button" value="/" onClick={() => handleClick('/')} />
       </fieldset>
     </div>
   );
